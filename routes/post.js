@@ -11,5 +11,6 @@ router.get('/',postController.getPosts)
 //router.post("/post",validator.createPostValidator,postController.createPost);
 router.post("/post",postController.createPost);
 router.post("/user",postController.createUser);
+router.post("/multiQues",postController.createMultipleChoice);
 
 module.exports= router;

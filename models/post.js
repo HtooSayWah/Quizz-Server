@@ -34,10 +34,62 @@ const userSchema = new mongoose.Schema({
         maxLength:50
     },
 })
+
+const multipleChoiceSchema = new mongoose.Schema({
+    question:{
+        type:String,
+        required: "Question is required!",
+        minLength:8,
+        maxLength:500
+    },
+    correctAns:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    deluluAns1:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    deluluAns2:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    deluluAns3:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    deluluAns4:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    deluluAns3:{
+        type:String,
+        required: "Answer is required!",
+        minLength:8,
+        maxLength:500
+    },
+    type:{
+        type:String,
+        required: "type is required!",
+        minLength:8,
+        maxLength:500
+    }
+});
 const Post = mongoose.model("Post",postSchema);
 const User = mongoose.model("User",userSchema);
-
+const multipleChoice = mongoose.model("multipleChoice",multipleChoiceSchema);
 module.exports = {
     Post,
-    User
+    User,
+    multipleChoice
 }

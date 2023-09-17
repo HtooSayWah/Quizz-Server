@@ -1,5 +1,5 @@
 
-const {Post,User} = require("../models/post");
+const {Post,User,multipleChoice} = require("../models/post");
 
 
 const getPosts =(req,res) =>{
@@ -50,8 +50,24 @@ const createUser = (req,res)=>{
     })
 }
 
+//multipleChoice
+const createMultipleChoice = (req,res)=>{
+    const multipleChoiceQues = new multipleChoice(req.body);
+    console.log("Createing MultipleChoice: ",multipleChoiceQues);
+ 
+
+    multipleChoiceQues.save().then((err,result)=>{
+       // res.send(result);
+        res.json(result);
+    }).catch((err)=>{
+        console.log(err);
+        res.json(err)
+    })
+}
+
 module.exports={
     getPosts,
     createPost,
     createUser,
+    createMultipleChoice,
 }
