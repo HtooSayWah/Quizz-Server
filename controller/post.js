@@ -113,10 +113,20 @@ const createMultipleChoice = (req,res)=>{
     })
 }
 
+const getMultipleChoice = (req,res)=>{
+    const multipleChoices = multipleChoice.find({"userName" : req.body.quizzName})
+    .select("_id title body")
+    .then(multipleChoicesRes =>{
+        res.status(200).json({multipleChoices:multipleChoicesRes})
+    })
+    .catch(err => console.log(err));
+}
+
 module.exports={
     getPosts,
     createPost,
     createUser,
     createMultipleChoice,
     userSignIn,
+    getMultipleChoice,
 }
