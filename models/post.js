@@ -83,6 +83,12 @@ const multipleChoiceSchema = new mongoose.Schema({
         required: "type is required!",
         minLength:8,
         maxLength:500
+    },
+    quizzName:{
+        type:String,
+        required: "type is required!",
+        minLength:8,
+        maxLength:500
     }
 });
 const Post = mongoose.model("Post",postSchema);
