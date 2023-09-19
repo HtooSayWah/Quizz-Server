@@ -12,5 +12,6 @@ router.get('/',postController.getPosts)
 router.post("/post",postController.createPost);
 router.post("/user",postController.createUser);
 router.post("/multiQues",postController.createMultipleChoice);
+router.post("/signIn",postController.userSignIn);
 
 module.exports= router;

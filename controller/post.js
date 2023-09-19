@@ -12,6 +12,34 @@ const getPosts =(req,res) =>{
     .catch(err => console.log(err));
     //res.send();
 }
+const userSignIn = (req,res) =>{
+    //db.myCol.find({"name" : "sunita"}); 
+    console.log("reqest", req.body);
+    const name = req.body.userName;
+    const pwd = req.body.password;
+    const user = User.find({"userName" : name})
+    .select("_id userName password")
+    .then(user =>{  
+        //res.status(200).json({user:user});
+        //console.log("user",user);
+        if(user[0].userName == name && user[0].password == pwd){
+            const loginApprove = {
+                "status":true,
+                "des": "login successful",
+            }
+            res.status(200).json(loginApprove);
+        }else{
+            const loginApprove = {
+                "status":false,
+                "des": "login fail",
+            }
+            res.status(200).json(loginApprove);
+        }
+
+    })
+    .catch(err => console.log(err));
+
+}
 
 const createPost = (req,res)=>{
     const post = new Post(req.body); 
@@ -70,4 +98,5 @@ module.exports={
     createPost,
     createUser,
     createMultipleChoice,
+    userSignIn,
 }
