@@ -63,19 +63,39 @@ const createPost = (req,res)=>{
     
     
 }
+const checkUserAvailable = (username) =>{
+    const user = User.find({"userName" : username})
+    .select("_id title body")
+    .then(user =>{
+        if(user.length>0){
+            const userAvailable = false;
+            return userAvailable;
+        }else{
+            const userAvailable = true;
+            return userAvailable;
+        }
+        
+    })
+    .catch(err => console.log(err));
+}
 
 const createUser = (req,res)=>{
     const user = new User(req.body);
     console.log("Createing User: ",user);
- 
+    const userAvailable = checkUserAvailable(req.body.userName);
 
-    user.save().then((err,result)=>{
-       // res.send(result);
-        res.json(result);
-    }).catch((err)=>{
-        console.log(err);
-        res.json(err)
-    })
+    if(userAvailable){
+        user.save().then((err,result)=>{
+            // res.send(result);
+             res.json(result);
+         }).catch((err)=>{
+             console.log(err);
+             res.json(err)
+         })
+    }else{
+        res.json({"status": "username already exist"});
+    }
+    
 }
 
 //multipleChoice
